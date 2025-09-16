@@ -167,6 +167,21 @@ body::after,
 .listItemImage button:focus-visible img,
 .listItemImageButton:hover img,
 .listItemImageButton:focus-visible img {
+
+.cardImageContainer,
+.primaryImageWrapper {
+  transition: transform var(--jf-anim);
+  transform-origin: center;
+}
+
+.card:hover .cardImageContainer,
+.primaryImageWrapper:hover {
+  transform: scale(1.03);
+}
+
+.card:hover .cardImageContainer img,
+.primaryImageWrapper:hover img {
+
   filter: saturate(1.1) contrast(1.02);
 }
 
