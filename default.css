@@ -9,7 +9,7 @@
   /* Colors */
   --jf-bg: #0b0f14;                 /* page base */
   --jf-bg-2: #0f141b;               /* cards/sections */
-  --jf-surface: rgba(255,255,255,.06);
+  --jf-surface: rgba(77, 50, 50, 0);
   --jf-text: rgba(255,255,255,.88);
   --jf-text-dim: rgba(255,255,255,.65);
   --jf-accent: #5bd6ff;             /* accent (buttons, focus) */
@@ -19,10 +19,10 @@
   /* Backdrop overlay */
   --jf-backdrop-opacity: .32;       /* intensity of backdrop image */
   --jf-backdrop-blur: 18px;
-  --jf-backdrop-vignette: rgba(0,0,0,.55);
+  --jf-backdrop-vignette: rgb(223, 10, 10);
 
   /* Cards / Posters */
-  --jf-radius: 16px;
+  --jf-radius: 50%;
   --jf-card-shadow: 0 10px 24px rgba(0,0,0,.35);
   --jf-card-hover: 0 16px 36px rgba(0,0,0,.5);
 
@@ -126,12 +126,12 @@ body::after,
 .primaryImageWrapper,
 .listItemImage,
 .listItemImageButton {
-  aspect-ratio: 2/3; /* oder 16/9 je nach gewünschtem Format */
   width: 100%;
-  height: auto;
-  position: relative;
-  overflow: hidden;
+  height: 100%;
+  position: absolute;
+  overflow: auto;
   background: var(--jf-surface);
+  background-repeat: no-repeat !important;
 }
 
 .card .cardImageContainer img,
@@ -139,13 +139,13 @@ body::after,
 .listItemImage button img,
 .listItemImage a img,
 .listItemImageButton img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+  background: none !important;
+  background-repeat: no-repeat !important;
   transition: filter var(--jf-anim), scale var(--jf-anim);
 }
 
