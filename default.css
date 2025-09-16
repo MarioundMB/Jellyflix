@@ -140,7 +140,7 @@ body::after,
   text-decoration: none;
 }
 
-.card .cardImageContainer img,
+.card,
 .primaryImageWrapper img,
 .listItemImage button img,
 .listItemImage a img,
