@@ -22,7 +22,11 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
   overflow: hidden;                /* schneidet die graue Fläche ab */
   background: transparent !important;
 }
-
+.cardPadder,
+.cardBox,
+.defaultCardBackground {
+  background: transparent !important;
+}
 .indicator {
     background: #00000058 !important;
 }
