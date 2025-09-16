@@ -317,15 +317,15 @@ img[src$=".png"] { image-rendering: -webkit-optimize-contrast; }
 
 /* ---------- Optional tweaks (einfach aktivieren) ---------- */
 
-/* 1) Etwas stärkerer Backdrop
+ /*1) Etwas stärkerer Backdrop*/
 :root { --jf-backdrop-opacity: .42; --jf-backdrop-blur: 22px; }
-*/
 
-/* 2) Knalligerer Fortschrittsbalken
+
+ /*2) Knalligerer Fortschrittsbalken*/
 .itemProgressBarForeground { filter: saturate(1.35) brightness(1.1); }
-*/
 
-/* 3) Kompaktere Kartenabstände
+
+ /*3) Kompaktere Kartenabstände*/
 .itemsContainer, .emby-scroller { --pad: 10px; }
-*/
+
 }
