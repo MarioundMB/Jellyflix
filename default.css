@@ -33,6 +33,11 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
   background: transparent !important;
   box-shadow: none !important;
 }
+.cardImageContainer img,
+.primaryImageWrapper img {
+  border-radius: inherit !important;
+  display: block;                  /* keine weißen Linien */
+}
 .indicator {
     background: #00000058 !important;
 }
