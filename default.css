@@ -1,7 +1,7 @@
 :root {
   /* Hauptfarben */
   --accent: #e50914;         /* Netflix-Rot */
-  --accent2: #b20710;         /* dunkleres Rot für Verläufe/Hover */
+  --accent2: #b2070f7c;         /* dunkleres Rot für Verläufe/Hover */
   --bg: #000000;               /* Hintergrund (Seite) */
   --bg-alt: #141414;           /* Panels, Header, Scroller */
   --text: #ffffff;             /* Standard-Text */
@@ -65,11 +65,11 @@ a, .emby-linkbutton,
 }
 .card:focus-within, .card:hover {
   outline: 2px solid var(--accent2);
-  outline-offset: 1;
+  outline-offset: 0;
 }
 .skinHeader, .mainDrawer {
     background: var(--bg-alt);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 0px solid var(--border);
 }
 .indicator {
     background: #00000058 !important;
