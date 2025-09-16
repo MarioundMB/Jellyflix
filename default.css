@@ -122,10 +122,15 @@ body::after,
 }
 
 /* ---------- Cards & posters ---------- */
-.card, .cardImageContainer, .primaryImageWrapper, .listItemImage, .listItemImageButton {
-  border-radius: var(--jf-radius) !important;
+.cardImageContainer,
+.primaryImageWrapper,
+.listItemImage,
+.listItemImageButton {
+  aspect-ratio: 2/3; /* oder 16/9 je nach gewünschtem Format */
+  width: 100%;
+  height: auto;
+  position: relative;
   overflow: hidden;
-  box-shadow: var(--jf-card-shadow);
   background: var(--jf-surface);
 }
 
@@ -134,11 +139,13 @@ body::after,
 .listItemImage button img,
 .listItemImage a img,
 .listItemImageButton img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
   transition: filter var(--jf-anim), scale var(--jf-anim);
 }
 
