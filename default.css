@@ -328,3 +328,4 @@ img[src$=".png"] { image-rendering: -webkit-optimize-contrast; }
 /* 3) Kompaktere Kartenabstände
 .itemsContainer, .emby-scroller { --pad: 10px; }
 */
+}
