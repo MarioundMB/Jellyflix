@@ -189,9 +189,7 @@ body::after,
 .listItemImage a:hover img,
 .listItemImage a:focus-visible img,
 .listItemImageButton:hover img,
-.listItemImageButton:focus-visible img {
-=======
-}
+.listItemImageButton:focus-visible img
 
 .card:hover .cardImageContainer img,
 .card:focus-within .cardImageContainer img,
@@ -363,4 +361,6 @@ img[src$=".png"] { image-rendering: -webkit-optimize-contrast; }
  /*3) Kompaktere Kartenabstände*/
 .itemsContainer, .emby-scroller { --pad: 10px; }
 
+}
+}
 }
