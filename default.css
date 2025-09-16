@@ -133,12 +133,22 @@ body::after,
 .primaryImageWrapper img,
 .listItemImage button img {
   object-fit: cover;
-  transition: transform var(--jf-anim), filter var(--jf-anim);
+  transition: filter var(--jf-anim);
+}
+
+.cardImageContainer,
+.primaryImageWrapper {
+  transition: transform var(--jf-anim);
+  transform-origin: center;
+}
+
+.card:hover .cardImageContainer,
+.primaryImageWrapper:hover {
+  transform: scale(1.03);
 }
 
 .card:hover .cardImageContainer img,
 .primaryImageWrapper:hover img {
-  transform: scale(1.04);
   filter: saturate(1.1) contrast(1.02);
 }
 
