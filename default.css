@@ -19,28 +19,11 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
 .cardOverlayContainer,
 .cardPadder {
   border-radius: 15px !important;
-  overflow: hidden;                /* schneidet die graue Fläche ab */
-  background: transparent !important;
-}
-.cardPadder,
-.cardBox,
-.defaultCardBackground {
-  background: transparent !important;
-}
-.cardOverlayContainer::before,
-.cardOverlayContainer::after,
-.cardOverlayButton {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-.cardImageContainer img,
-.primaryImageWrapper img {
-  border-radius: inherit !important;
-  display: block;                  /* keine weißen Linien */
+  overflow: hidden;
 }
 .indicator {
     background: #00000058 !important;
 }
 .itemProgressBarForeground {
-    background: linear-gradient(90deg, #ff0000, #ff8c00, #ffff00, #008000, #0000ff, #4b0082, #ee82ee) !important;
+    background: linear-gradient(90deg, #868686, #ffffff) !important;
 }
