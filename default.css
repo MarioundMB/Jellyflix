@@ -132,8 +132,18 @@ body::after,
 .card .cardImageContainer img,
 .primaryImageWrapper img,
 .listItemImage button img,
+
+.listItemImage a img,
+.listItemImageButton img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
 .listItemImageButton img {
   object-fit: cover;
+
   transition: filter var(--jf-anim);
 }
 
@@ -141,8 +151,13 @@ body::after,
   .card .cardImageContainer img,
   .primaryImageWrapper img,
   .listItemImage button img,
+
+  .listItemImage a img,
+  .listItemImageButton img {
+
   .listItemImageButton img {
     scale: 1;
+
     transform-origin: center;
     transition: scale var(--jf-anim), filter var(--jf-anim);
   }
@@ -153,10 +168,29 @@ body::after,
   .primaryImageWrapper:focus-within img,
   .listItemImage button:hover img,
   .listItemImage button:focus-visible img,
+
+  .listItemImage a:hover img,
+  .listItemImage a:focus-visible img,
+
+
   .listItemImageButton:hover img,
   .listItemImageButton:focus-visible img {
     scale: 1.03;
   }
+
+}
+
+.card:hover .cardImageContainer img,
+.card:focus-within .cardImageContainer img,
+.primaryImageWrapper:hover img,
+.primaryImageWrapper:focus-within img,
+.listItemImage button:hover img,
+.listItemImage button:focus-visible img,
+.listItemImage a:hover img,
+.listItemImage a:focus-visible img,
+.listItemImageButton:hover img,
+.listItemImageButton:focus-visible img {
+=======
 }
 
 .card:hover .cardImageContainer img,
@@ -181,6 +215,7 @@ body::after,
 
 .card:hover .cardImageContainer img,
 .primaryImageWrapper:hover img {
+
 
   filter: saturate(1.1) contrast(1.02);
 }
