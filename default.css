@@ -1,14 +1,42 @@
+:root {
+  /* Hauptfarben */
+  --accent: #e50914;         /* Netflix-Rot */
+  --accent2: #b20710;         /* dunkleres Rot für Verläufe/Hover */
+  --bg: #000000;               /* Hintergrund (Seite) */
+  --bg-alt: #141414;           /* Panels, Header, Scroller */
+  --text: #ffffff;             /* Standard-Text */
+  --text-dim: rgba(255,255,255,.65);
+  --border: rgba(255,255,255,.15);
+
+  /* Effekte */
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(0,0,0,.6);
+  --transition: 180ms ease;
+}
+
 html, body {
-    color: white;
+    background: var(--bg);
+    color: var(--text);
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     text-rendering: optimizeLegibility;
     scrollbar-width: auto;
-    scrollbar-color: #ffffff #242424;
+    scrollbar-color: #ffffff #00000000;
 }
 
-a, .emby-linkbutton, .emby-linkbutton:visited {
-    color: #fcfeff;
+a, .emby-linkbutton, 
+.emby-linkbutton:visited,
+.raised.emby-linkbutton,
+.emby-button-foreground {
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: filter var(--transition);
 }
+/*.raised.emby-button:hover {
+  filter: brightness(0.1);
+}*/
+
 .skinHeader-withBackground {
     background: rgba(0, 0, 0, 0);
 }
@@ -18,12 +46,34 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
 .cardContent,
 .cardOverlayContainer,
 .cardPadder {
-  border-radius: 15px !important;
-  overflow: hidden;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-alt);
+    box-shadow: var(--shadow);
+}
+.cardImageContainer img {
+  transition: transform var(--transition);
+}
+.card:hover .cardImageContainer img {
+  transform: scale(1.05);
+}
+.sectionTitle, .itemName, .detailPage h1 {
+  color: var(--text);
+}
+.cardText, .secondaryText {
+  color: var(--text-dim);
+}
+.card:focus-within, .card:hover {
+  outline: 2px solid var(--accent2);
+  outline-offset: 1;
+}
+.skinHeader, .mainDrawer {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
 }
 .indicator {
     background: #00000058 !important;
 }
 .itemProgressBarForeground {
-    background: linear-gradient(90deg, #868686, #ffffff) !important;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
 }
