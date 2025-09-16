@@ -1,0 +1,287 @@
+/* ===========================
+   JellyFlix Next – lightweight, modern, no-CDN
+   Works with Jellyfin 10.9/10.10 web client
+   Author: Mario
+   =========================== */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Colors */
+  --jf-bg: #0b0f14;                 /* page base */
+  --jf-bg-2: #0f141b;               /* cards/sections */
+  --jf-surface: rgba(255,255,255,.06);
+  --jf-text: rgba(255,255,255,.88);
+  --jf-text-dim: rgba(255,255,255,.65);
+  --jf-accent: #5bd6ff;             /* accent (buttons, focus) */
+  --jf-accent-2: #a68cff;           /* secondary accent */
+  --jf-danger: #ff6b6b;
+
+  /* Backdrop overlay */
+  --jf-backdrop-opacity: .32;       /* intensity of backdrop image */
+  --jf-backdrop-blur: 18px;
+  --jf-backdrop-vignette: rgba(0,0,0,.55);
+
+  /* Cards / Posters */
+  --jf-radius: 16px;
+  --jf-card-shadow: 0 10px 24px rgba(0,0,0,.35);
+  --jf-card-hover: 0 16px 36px rgba(0,0,0,.5);
+
+  /* Typography */
+  --jf-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --jf-title-w: 700;
+  --jf-anim: 180ms cubic-bezier(.2,.7,.2,1);
+}
+
+/* ---------- Base ---------- */
+html, body {
+  background: var(--jf-bg);
+  color: var(--jf-text);
+  font-family: var(--jf-font);
+  text-rendering: optimizeLegibility;
+}
+
+a, .emby-linkbutton {
+  color: var(--jf-accent);
+}
+
+hr { border-color: rgba(255,255,255,.08); }
+
+/* ---------- App header & nav ---------- */
+.skinHeader, .mainDrawer {
+  background: linear-gradient(180deg, rgba(12,16,22,.85), rgba(12,16,22,.65)) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.headerButton, .paper-icon-button-light, .emby-button {
+  border-radius: 999px;
+}
+
+/* ---------- Global backdrop handling ----------
+   Jellyfin hat je nach Version unterschiedliche Klassen/Strukturen.
+   Wir greifen breit & defensiv und liefern zusätzlich einen Farbverlauf-Fallback.
+------------------------------------------------ */
+body::before,
+.backgroundContainer::before,
+.detailPage::before,
+.itemBackdrop::before,
+.backdropContainer::before,
+[class*="backdrop"]:not(svg)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  /* Fallback: stylischer Verlauf, falls kein Backdrop-Bild vorhanden ist */
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(91,214,255,.18), transparent 60%),
+    radial-gradient(1000px 500px at 110% 10%, rgba(166,140,255,.15), transparent 55%),
+    linear-gradient(180deg, #0b0f14 0%, #0f141b 40%, #0b0f14 100%);
+}
+
+/* Vorhandene Backdrops sichtbar, weichgezeichnet & abgedunkelt */
+.backdropImage,
+.itemBackdrop,
+.backgroundContainer .backdropContainer,
+[class*="backdropImage"] {
+  filter: blur(var(--jf-backdrop-blur)) saturate(1.15) brightness(.95);
+  opacity: var(--jf-backdrop-opacity);
+  transform: scale(1.03);
+}
+
+/* Manche Builds verstecken Backdrops – das unterbinden wir */
+.backdropImage,
+.itemBackdrop,
+.backgroundContainer .backdropContainer {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Vignette-Overlay für bessere Lesbarkeit */
+body::after,
+.detailPage::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 120% at 50% 10%, rgba(0,0,0,0) 0%, var(--jf-backdrop-vignette) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 100%);
+  pointer-events: none;
+}
+
+/* ---------- Sections / panels ---------- */
+.emby-scroller, .itemsContainer, .section, .paperList, .cardScalable {
+  --pad: 14px;
+}
+.sectionTitle, .sectionTitleTextButton, .listItem .listItemBodyText {
+  color: var(--jf-text);
+}
+.sectionTitle {
+  font-weight: var(--jf-title-w);
+  letter-spacing: .2px;
+}
+
+/* ---------- Cards & posters ---------- */
+.card, .cardImageContainer, .primaryImageWrapper, .listItemImage, .listItemImageButton {
+  border-radius: var(--jf-radius) !important;
+  overflow: hidden;
+  box-shadow: var(--jf-card-shadow);
+  background: var(--jf-surface);
+}
+
+.card .cardImageContainer img,
+.primaryImageWrapper img,
+.listItemImage button img {
+  object-fit: cover;
+  transition: transform var(--jf-anim), filter var(--jf-anim);
+}
+
+.card:hover .cardImageContainer img,
+.primaryImageWrapper:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.1) contrast(1.02);
+}
+
+.cardText, .secondaryText, .playedIndicator {
+  color: var(--jf-text-dim);
+}
+
+/* Fokus/Hover-Ring */
+.card:focus-within, .card:hover,
+.listItem:focus-within, .listItem:hover {
+  box-shadow: var(--jf-card-hover);
+  outline: 1px solid rgba(91,214,255,.25);
+}
+
+/* Watched badges / progress bars */
+.playedIndicator {
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+}
+.innerCardFooter, .itemProgressBar {
+  height: 4px !important;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,.15);
+}
+.itemProgressBarForeground {
+  background: linear-gradient(90deg, var(--jf-accent), var(--jf-accent-2)) !important;
+}
+
+/* ---------- Detail page (Movie/Episode/Series) ---------- */
+.detailPage .content-primary, .detailPage .content-secondary {
+  background: linear-gradient(180deg, rgba(15,20,27,.65), rgba(15,20,27,.35));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: calc(var(--jf-radius) + 4px);
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.itemName, .detailPage h1, .detailPage h2 {
+  font-weight: var(--jf-title-w);
+  color: #fff;
+}
+
+/* Meta pills */
+.detailPage .tag, .detailPage .chip {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: var(--jf-text);
+}
+
+/* Action buttons */
+.detailPage .fab, .raised, .emby-button-foreground,
+.button-flat, .paper-icon-button-light {
+  border-radius: 12px !important;
+}
+.raised.emby-button, .emby-button-foreground {
+  background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+}
+.raised.emby-button:hover {
+  filter: brightness(1.08);
+}
+
+/* ---------- Grids & rows ---------- */
+.itemsContainer .card, .vertical-wrap .card, .horizontalWrap .card {
+  transition: transform var(--jf-anim), box-shadow var(--jf-anim);
+}
+.itemsContainer .card:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Search, inputs ---------- */
+.paper-input, .emby-input, input[type="text"], input[type="search"], select, textarea {
+  background: rgba(255,255,255,.06) !important;
+  color: var(--jf-text) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+}
+
+/* ---------- Player page ---------- */
+.nowPlayingInfoContainer, .videoOsdBottom, .videoOsdTop {
+  background: linear-gradient(180deg, rgba(8,10,14,.75), rgba(8,10,14,.35));
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.osdTitle {
+  font-weight: var(--jf-title-w);
+}
+
+/* ---------- Login ---------- */
+.loginPage, .manualLoginForm {
+  background: radial-gradient(800px 500px at 10% 0%, rgba(91,214,255,.1), transparent 60%),
+              radial-gradient(900px 500px at 100% 10%, rgba(166,140,255,.1), transparent 55%),
+              var(--jf-bg);
+}
+.manualLoginForm {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  padding: 18px;
+  background: rgba(255,255,255,.04);
+  box-shadow: var(--jf-card-shadow);
+}
+
+/* ---------- Chips for ratings/genres ---------- */
+[class*="genres"], [class*="ratings"], .detailPage .tagItems {
+  gap: 8px;
+}
+[class*="genres"] .tag, [class*="ratings"] .tag {
+  background: rgba(255,255,255,.08);
+}
+
+/* ---------- Misc polish ---------- */
+::-webkit-scrollbar {
+  height: 12px; width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.18);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,.28);
+}
+
+/* Reduce harsh shadows on posters with transparent PNGs */
+img[src$=".png"] { image-rendering: -webkit-optimize-contrast; }
+
+/* ---------- Optional tweaks (einfach aktivieren) ---------- */
+
+/* 1) Etwas stärkerer Backdrop
+:root { --jf-backdrop-opacity: .42; --jf-backdrop-blur: 22px; }
+*/
+
+/* 2) Knalligerer Fortschrittsbalken
+.itemProgressBarForeground { filter: saturate(1.35) brightness(1.1); }
+*/
+
+/* 3) Kompaktere Kartenabstände
+.itemsContainer, .emby-scroller { --pad: 10px; }
+*/
