@@ -12,7 +12,7 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
 .skinHeader-withBackground {
     background: rgba(0, 0, 0, 0);
 }
-.cardContent, .cardContent-button, .itemDetailImage, .cardOverlayContainer{
+.cardContent{
     border-radius: 15px;
     backface-visibility: hidden;
 }
