@@ -22,3 +22,6 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
 .itemProgressBarForeground {
     background: linear-gradient(90deg, #ff0000, #ff8c00, #ffff00, #008000, #0000ff, #4b0082, #ee82ee) !important;
 }
+.cardImageContainer{
+    color: rgba(0, 0, 0, 0) !important;
+}
