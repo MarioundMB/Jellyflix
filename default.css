@@ -131,10 +131,42 @@ body::after,
 
 .card .cardImageContainer img,
 .primaryImageWrapper img,
-.listItemImage button img {
+.listItemImage button img,
+.listItemImageButton img {
   object-fit: cover;
   transition: filter var(--jf-anim);
 }
+
+@supports (scale: 1) {
+  .card .cardImageContainer img,
+  .primaryImageWrapper img,
+  .listItemImage button img,
+  .listItemImageButton img {
+    scale: 1;
+    transform-origin: center;
+    transition: scale var(--jf-anim), filter var(--jf-anim);
+  }
+
+  .card:hover .cardImageContainer img,
+  .card:focus-within .cardImageContainer img,
+  .primaryImageWrapper:hover img,
+  .primaryImageWrapper:focus-within img,
+  .listItemImage button:hover img,
+  .listItemImage button:focus-visible img,
+  .listItemImageButton:hover img,
+  .listItemImageButton:focus-visible img {
+    scale: 1.03;
+  }
+}
+
+.card:hover .cardImageContainer img,
+.card:focus-within .cardImageContainer img,
+.primaryImageWrapper:hover img,
+.primaryImageWrapper:focus-within img,
+.listItemImage button:hover img,
+.listItemImage button:focus-visible img,
+.listItemImageButton:hover img,
+.listItemImageButton:focus-visible img {
 
 .cardImageContainer,
 .primaryImageWrapper {
@@ -149,6 +181,7 @@ body::after,
 
 .card:hover .cardImageContainer img,
 .primaryImageWrapper:hover img {
+
   filter: saturate(1.1) contrast(1.02);
 }
 
