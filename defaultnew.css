@@ -16,5 +16,8 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
     border-radius: 15px;
 }
 .indicator {
-  background: #00000058 !important;
+    background: #00000058 !important;
+}
+.itemProgressBarForeground {
+    background: linear-gradient(90deg, #ff0000, #ff8c00, #ffff00, #008000, #0000ff, #4b0082, #ee82ee) !important;
 }
