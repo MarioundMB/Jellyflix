@@ -129,8 +129,15 @@ body::after,
   align-items: center;
   display: flex;
   justify-content: center;
-  background: var(--jf-surface);
-  background-repeat: no-repeat !important;
+  background-clip: content-box !important;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: .2em;
+  color: inherit;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .card .cardImageContainer img,
