@@ -27,6 +27,12 @@ a, .emby-linkbutton, .emby-linkbutton:visited {
 .defaultCardBackground {
   background: transparent !important;
 }
+.cardOverlayContainer::before,
+.cardOverlayContainer::after,
+.cardOverlayButton {
+  background: transparent !important;
+  box-shadow: none !important;
+}
 .indicator {
     background: #00000058 !important;
 }
